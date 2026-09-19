@@ -1,5 +1,9 @@
 # AgentUI
 
+![AgentUI — components rendering progressively](docs/demo.gif)
+
+![AgentUI](docs/social-preview.png)
+
 **Declarative UI blocks for agent responses.** Your engine already produces
 structure — tables, timelines, charts. AgentUI delivers that structure to the
 user's screen directly, instead of letting the model flatten it into prose
