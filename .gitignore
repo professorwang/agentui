@@ -1,9 +1,0 @@
-# Python
-.venv/
-__pycache__/
-.pytest_cache/
-*.egg-info/
-dist/
-build/
-# JS
-node_modules/
