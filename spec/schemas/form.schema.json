@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentui.dev/schemas/1/form.schema.json",
+  "title": "form block",
+  "description": "Structured input. Field contract is server-authoritative: the client renders and gives instant feedback with the same rules, the server re-validates on submit (client validation is UX, server validation is truth).",
+  "type": "object",
+  "required": ["component", "fields"],
+  "properties": {
+    "component": { "const": "form" },
+    "title": { "type": "string", "maxLength": 61 },
+    "steps": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "submitLabel": { "type": "string", "maxLength": 30 },
+    "fields": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["name", "label", "type", "required"],
+        "properties": {
+          "name": { "type": "string", "pattern": "^[A-Za-z0-9_]{1,64}$" },
+          "label": { "type": "string", "maxLength": 121 },
+          "type": { "enum": ["text", "date", "time", "number", "select"] },
+          "required": { "type": "boolean" },
+          "hint": { "type": "string", "maxLength": 121 },
+          "step": { "type": "integer", "minimum": 1 },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["value", "label"],
+              "properties": {
+                "value": { "type": "string", "maxLength": 64 },
+                "label": { "type": "string", "maxLength": 64 }
+              }
+            }
+          },
+          "min": { "type": "number" },
+          "max": { "type": "number" },
+          "maxLength": { "type": "integer", "minimum": 1, "maximum": 200 },
+          "pattern": { "type": "string", "maxLength": 200 },
+          "visibleWhen": {
+            "type": "object",
+            "required": ["field"],
+            "properties": {
+              "field": { "type": "string" },
+              "in": { "type": "array", "items": {} },
+              "equals": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

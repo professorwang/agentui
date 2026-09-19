@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentui.dev/schemas/1/chart.schema.json",
+  "title": "chart block",
+  "type": "object",
+  "required": ["component", "chartType", "series"],
+  "properties": {
+    "component": { "const": "chart" },
+    "title": { "type": "string", "maxLength": 61 },
+    "chartType": { "enum": ["line", "bar"] },
+    "yMin": { "type": "number" },
+    "yMax": { "type": "number" },
+    "note": { "type": "string", "maxLength": 200 },
+    "series": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["topic", "label", "points"],
+        "properties": {
+          "topic": { "type": "string", "maxLength": 64 },
+          "label": { "type": "string", "maxLength": 40 },
+          "reverse": { "type": "boolean" },
+          "points": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 14,
+            "items": {
+              "type": "object",
+              "oneOf": [
+                {
+                  "required": ["x", "y"],
+                  "properties": {
+                    "x": { "type": "string", "maxLength": 12 },
+                    "y": { "type": "number" }
+                  }
+                },
+                {
+                  "required": ["label", "value"],
+                  "properties": {
+                    "label": { "type": "string", "maxLength": 20 },
+                    "value": { "type": "number" }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentui.dev/schemas/1/timeline.schema.json",
+  "title": "timeline block",
+  "type": "object",
+  "required": ["component", "items"],
+  "properties": {
+    "component": { "const": "timeline" },
+    "title": { "type": "string", "maxLength": 61 },
+    "now": { "type": "string", "maxLength": 20 },
+    "items": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 14,
+      "items": {
+        "type": "object",
+        "required": ["start"],
+        "properties": {
+          "start": { "type": "string", "pattern": "^[0-9]{4}(-[0-9]{1,2}(-[0-9]{1,2})?)?$", "maxLength": 10 },
+          "end": { "type": "string", "pattern": "^[0-9]{4}(-[0-9]{1,2}(-[0-9]{1,2})?)?$", "maxLength": 10 },
+          "title": { "type": "string", "maxLength": 41 },
+          "note": { "type": "string", "maxLength": 61 }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentui.dev/schemas/1/table.schema.json",
+  "title": "table block",
+  "type": "object",
+  "required": ["component", "columns", "rows"],
+  "properties": {
+    "component": { "const": "table" },
+    "title": { "type": "string", "maxLength": 61 },
+    "columns": { "type": "array", "minItems": 2, "maxItems": 8, "items": { "type": "string", "maxLength": 121 } },
+    "rows": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {
+        "type": "array",
+        "items": { "type": ["string", "null"], "maxLength": 121 }
+      }
+    }
+  }
+}

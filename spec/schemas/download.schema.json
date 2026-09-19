@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentui.dev/schemas/1/download.schema.json",
+  "title": "download block",
+  "description": "Client-side file export. The file is materialized from fileText via Blob locally; the client must NOT fetch any URL from this block.",
+  "type": "object",
+  "required": ["component", "filename", "fileText", "buttonLabel"],
+  "properties": {
+    "component": { "const": "download" },
+    "title": { "type": "string", "maxLength": 61 },
+    "filename": { "type": "string", "pattern": "^[\\w.-]{1,80}$" },
+    "mimeType": { "type": "string", "maxLength": 60 },
+    "fileText": { "type": "string", "maxLength": 20000 },
+    "buttonLabel": { "type": "string", "maxLength": 30 },
+    "preview": { "type": "string", "maxLength": 160 },
+    "header": { "type": "string", "maxLength": 120 }
+  }
+}

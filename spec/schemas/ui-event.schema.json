@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentui.dev/schemas/1/ui-event.schema.json",
+  "title": "AgentUI wire event (v1)",
+  "type": "object",
+  "required": ["uiVersion", "blocks"],
+  "properties": {
+    "uiVersion": { "type": "integer", "minimum": 1 },
+    "blocks": {
+      "type": "array",
+      "maxItems": 5,
+      "items": { "$ref": "#/definitions/block" }
+    }
+  },
+  "definitions": {
+    "block": {
+      "type": "object",
+      "required": ["component"],
+      "properties": {
+        "component": {
+          "enum": ["keyvalue", "table", "form", "timeline", "compare", "download", "chart", "calendar"]
+        },
+        "title": { "type": "string", "maxLength": 61 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "component": { "const": "keyvalue" } } },
+          "then": { "$ref": "keyvalue.schema.json" }
+        },
+        {
+          "if": { "properties": { "component": { "const": "table" } } },
+          "then": { "$ref": "table.schema.json" }
+        },
+        {
+          "if": { "properties": { "component": { "const": "form" } } },
+          "then": { "$ref": "form.schema.json" }
+        },
+        {
+          "if": { "properties": { "component": { "const": "timeline" } } },
+          "then": { "$ref": "timeline.schema.json" }
+        },
+        {
+          "if": { "properties": { "component": { "const": "compare" } } },
+          "then": { "$ref": "compare.schema.json" }
+        },
+        {
+          "if": { "properties": { "component": { "const": "download" } } },
+          "then": { "$ref": "download.schema.json" }
+        },
+        {
+          "if": { "properties": { "component": { "const": "chart" } } },
+          "then": { "$ref": "chart.schema.json" }
+        },
+        {
+          "if": { "properties": { "component": { "const": "calendar" } } },
+          "then": { "$ref": "calendar.schema.json" }
+        }
+      ]
+    }
+  }
+}
